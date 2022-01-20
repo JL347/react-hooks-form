@@ -1,8 +1,9 @@
 import React from 'react';
 import useForm from "./useForm";
+import validate from './LoginFormValidationRules';
 
 const Form = () => {
-  const { values, handleChange, handleSubmit } = useForm(login);
+  const { values, handleChange, handleSubmit, errors } = useForm(login, validate);
 
   function login() {
     console.log(values);
@@ -18,36 +19,29 @@ const Form = () => {
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                   Email address
                 </label>
-                <div className="mt-1">
+                <div className="control">
                   <input
-                    id="email"
-                    name="email"
+                    className={`input ${errors.email && 'is-danger'}`}
                     type="email"
-                    autoComplete="email"
+                    name="email"
                     onChange={handleChange}
-                    value={values.email}
+                    value={values.email || ''}
                     required
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
+                  {errors.email && (
+                    <p className="help is-danger">{errors.email}</p>
+                  )}
                 </div>
               </div>
 
-              <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                  Password
-                </label>
-                <div className="mt-1">
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    autoComplete="current-password"
-                    onChange={handleChange}
-                    value={values.password}
-                    required
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  />
+              <div className="field">
+                <label className="label">Password</label>
+                <div className="control">
+                  <input className={`input ${errors.password && 'is-danger'}`} type="password" name="password" onChange={handleChange} value={values.password || ''} required />
                 </div>
+                {errors.password && (
+                  <p className="help is-danger">{errors.password}</p>
+                )}
               </div>
 
               <div className="flex items-center justify-between">
