@@ -19,9 +19,9 @@ const Form = () => {
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                   Email address
                 </label>
-                <div className="control">
+                <div className="">
                   <input
-                    className={`input ${errors.email && 'is-danger'}`}
+                    className={`${errors.email && 'outline-8'}`}
                     type="email"
                     name="email"
                     onChange={handleChange}
@@ -29,18 +29,18 @@ const Form = () => {
                     required
                   />
                   {errors.email && (
-                    <p className="help is-danger">{errors.email}</p>
+                    <p className="outline-8">{errors.email}</p>
                   )}
                 </div>
               </div>
 
-              <div className="field">
-                <label className="label">Password</label>
-                <div className="control">
-                  <input className={`input ${errors.password && 'is-danger'}`} type="password" name="password" onChange={handleChange} value={values.password || ''} required />
+              <div className="">
+                <label className="text-red-900">Password</label>
+                <div className="">
+                  <input className={`${errors.password && 'outline-8'}`} type="password" name="password" onChange={handleChange} value={values.password || ''} required />
                 </div>
                 {errors.password && (
-                  <p className="help is-danger">{errors.password}</p>
+                  <p className="outline-8">{errors.password}</p>
                 )}
               </div>
 
